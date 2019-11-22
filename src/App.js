@@ -5,7 +5,7 @@ import Registration from './components/UserRegistration/Index.js';
 
 class App extends React.Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
       loggedIn: false,
@@ -23,7 +23,6 @@ class App extends React.Component {
       }
     })
     const parsedLoginResponse = await response.json()
-
 
     if(parsedLoginResponse.status.code === 200) {
       this.setState({
@@ -74,3 +73,4 @@ class App extends React.Component {
 }
 
 export default App;
+// think of using router already

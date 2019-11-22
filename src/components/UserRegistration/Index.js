@@ -3,7 +3,7 @@ import { Form, Button, Label } from 'semantic-ui-react';
 
 class Registraion extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       username: '',
@@ -85,14 +85,15 @@ class Registraion extends React.Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
-          <Button type="Submit">{this.state.action === "register" ? "Register" : "Log in" }</Button>
+          <Button type="Submit">{
+            this.state.action === "register" ? "Register" : "Log in" }</Button>
         </Form>
         {
           this.state.action === "register"
           ?
-          <small>Already have an account? Log in <span onClick={this.switchForm}>here</span>.</small>
+          <small>Account already exists, please log in<span onClick={this.switchForm}>here</span>.</small>
           :
-          <small>Need an account? Sign up <span onClick={this.switchForm}>here</span>!</small>
+          <small>No account? Please sign up<span onClick={this.switchForm}>here</span>!</small>
         }
       </div>
     )
