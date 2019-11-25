@@ -91,9 +91,9 @@ class Registraion extends React.Component {
         {
           this.state.action === "register"
           ?
-          <small>Account already exists, please log in<span onClick={this.switchForm}>here</span>.</small>
+          <small><span onClick={this.switchForm}> Account already exists, please log in here</span>.</small>
           :
-          <small>No account? Please sign up<span onClick={this.switchForm}>here</span>!</small>
+          <small><span onClick={this.switchForm}>No account? Please sign up here</span>!</small>
         }
       </div>
     )
