@@ -25,7 +25,9 @@ class SkillContainer extends Component {
   getSkills = async () => {
 
     try {
-      const skills = await fetch(process.env.REACT_APP_API_URL + '/api/v1/skills/ ');
+      const skills = await fetch(process.env.REACT_APP_API_URL + '/api/v1/skills/ ', {
+        credentials: 'include'
+      });
       const parsedSkills = await skills.json();
       console.log(parsedSkills);
 
@@ -45,6 +47,7 @@ class SkillContainer extends Component {
 
       const createdSkillResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/skills/', {
         method: 'POST',
+        credentials: 'include',
         body: JSON.stringify(skillFromTheForm),
         headers: {
           'Content-Type': 'application/json'
@@ -87,7 +90,7 @@ class SkillContainer extends Component {
 
     try {
 
-      const url = process.env.REACT_APP_API_URL + '/api/v1/skills/' + this.state.skillToEdit.id
+      const url = process.env.REACT_APP_API_URL + '/api/v1/skills/' + this.state.skillToEdit.id;
 
       const updateResponse = await fetch(url, {
         method: 'PUT',
@@ -131,8 +134,9 @@ class SkillContainer extends Component {
     console.log(id)
 
     const deleteSkillResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/skills/' + id, {
-                                              method: 'DELETE'
-                                            });
+        method: 'DELETE',
+        credentials: 'include'
+    });
 
     const deleteSkillParsed = await deleteSkillResponse.json();
     console.log(deleteSkillParsed)
