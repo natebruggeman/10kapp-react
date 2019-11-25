@@ -90,7 +90,7 @@ class SkillContainer extends Component {
 
     try {
 
-      const url = process.env.REACT_APP_API_URL + '/api/v1/skills/' + this.state.skillToEdit.id
+      const url = process.env.REACT_APP_API_URL + '/api/v1/skills/' + this.state.skillToEdit.id;
 
       const updateResponse = await fetch(url, {
         method: 'PUT',

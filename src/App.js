@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import Icon from './components/Icon/Index.js'
+import NavMenu from './components/NavMenu/Index.js'
 import SkillContainer from './components/SkillContainer/Index.js';
 import Registration from './components/UserRegistration/Index.js';
 
@@ -63,7 +65,11 @@ class App extends React.Component {
         {
           this.state.loggedIn
           ?
-          <SkillContainer />
+          <React.Fragment>
+            <Icon />
+            <NavMenu />
+            <SkillContainer />
+          </React.Fragment>
           :
           <Registration login={this.login} register={this.register} />
         }
