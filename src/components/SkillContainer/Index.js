@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import Icon from '../Icon/Index.js'
+import NavMenu from '../NavMenu/Index.js'
 import SkillList from '../SkillList/Index.js';
 import CreateSkill from '../CreateSkill/Index.js';
 import EditSkillModal from '../EditSkillModal/Index.js';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Button } from 'semantic-ui-react';
 
 class SkillContainer extends Component {
   constructor(props){
@@ -10,6 +12,7 @@ class SkillContainer extends Component {
 
     this.state = {
       skills: [],
+      createModalOpen: false,
       editModalOpen: false,
       skillToEdit: {
         goal: '',
@@ -26,7 +29,7 @@ class SkillContainer extends Component {
   getSkills = async () => {
 
     try {
-      const skills = await fetch(process.env.REACT_APP_API_URL + '/api/v1/skills/ ', {
+      const skills = await fetch(process.env.REACT_APP_API_URL + '/api/v1/skills/', {
         credentials: 'include'
       });
       const parsedSkills = await skills.json();
@@ -41,7 +44,7 @@ class SkillContainer extends Component {
     }
   }
   addSkill = async (e, skillFromTheForm) => {
-    e.preventDefault();
+
     console.log(skillFromTheForm)
 
      try {
@@ -85,6 +88,14 @@ class SkillContainer extends Component {
       }
     })
   }
+  handleCreateChange = (event) => {
+    this.setState({
+      skills: {
+        ...this.state.skills,
+        [event.target.name]: event.target.value
+      }
+    })
+  }
   updateSkill = async (e) => {
     e.preventDefault()
 
@@ -124,9 +135,15 @@ class SkillContainer extends Component {
     }
   }
 
-  closeModal = () => {
+  closeEditModal = () => {
     this.setState({
       editModalOpen: false
+    })
+  }
+
+  closeCreateModal = () => {
+    this.setState({
+      createModalOpen: false
     })
   }
 
@@ -145,23 +162,35 @@ class SkillContainer extends Component {
   }
   render(){
     return (
-      <Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
-        <Grid.Row>
-          <Grid.Column>
-            <SkillList skills={this.state.skills} deleteSkill={this.deleteSkill} editSkill={this.editSkill}/>
-          </Grid.Column>
-          <Grid.Column>
-           <CreateSkill addSkill={this.addSkill}/>
-          </Grid.Column>
-          <EditSkillModal
-            open={this.state.editModalOpen}
-            updateSkill={this.updateSkill}
-            skillToEdit={this.state.skillToEdit}
-            closeModal={this.closeModal}
-            handleEditChange={this.handleEditChange}
-          />
-        </Grid.Row>
-      </Grid>
+      <React.Fragment>
+        <Icon />
+        <NavMenu logout={this.props.logout}/>
+
+        <div>
+          <Button onClick={() =>  this.props.logout(this.props.username)}>Logout</Button>
+        </div>
+        <Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
+          <Grid.Row>
+            <Grid.Column>
+              <SkillList
+              skills={this.state.skills}
+              addSkill={this.addSkill}
+              deleteSkill={this.deleteSkill}
+              editSkill={this.editSkill}/>
+            </Grid.Column>
+            <Grid.Column>
+              <CreateSkill addSkill={this.addSkill}/>
+            </Grid.Column>
+            <EditSkillModal
+              open={this.state.editModalOpen}
+              updateSkill={this.updateSkill}
+              skillToEdit={this.state.skillToEdit}
+              closeModal={this.closeModal}
+              handleEditChange={this.handleEditChange}
+            />
+          </Grid.Row>
+        </Grid>
+      </React.Fragment>
       )
   }
 }

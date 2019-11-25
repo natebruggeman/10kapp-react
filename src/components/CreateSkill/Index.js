@@ -8,13 +8,13 @@ class CreateSkill extends Component {
     this.state = {
       goal: '',
       objective: '',
-      time: '' // should this be null or just always start at 0?
+      time: ''
     }
   }
   handleChange = (e) => {
 
     this.setState({[e.currentTarget.name]: e.currentTarget.value})
-  } // what are we doing for the target.name? target.goal? Skill?
+  }
   render(){
     return (
       <Segment>

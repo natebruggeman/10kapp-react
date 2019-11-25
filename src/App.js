@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-import Icon from './components/Icon/Index.js'
-import NavMenu from './components/NavMenu/Index.js'
 import SkillContainer from './components/SkillContainer/Index.js';
 import Registration from './components/UserRegistration/Index.js';
 
@@ -11,7 +9,8 @@ class App extends React.Component {
 
     this.state = {
       loggedIn: false,
-      loggedInUserEmail: null
+      loggedInUserEmail: null,
+      loggedInUserName: null
     }
   }
 
@@ -29,7 +28,8 @@ class App extends React.Component {
     if(parsedLoginResponse.status.code === 200) {
       this.setState({
         loggedIn: true,
-        loggedInUserEmail: parsedLoginResponse.data.email
+        loggedInUserEmail: parsedLoginResponse.data.email,
+        loggedInUserName: parsedLoginResponse.data.username
       })
     } else {
       console.log("Login Busted:");
@@ -51,14 +51,34 @@ class App extends React.Component {
     if(parsedRegisterResponse.status.code === 201) {
       this.setState({
         loggedIn: true,
-        loggedInUserEmail: parsedRegisterResponse.data.email
+        loggedInUserEmail: parsedRegisterResponse.data.email,
+        loggedInUserName: parsedRegisterResponse.data.username
       })
     } else {
       console.log("Register Busted:");
       console.log(parsedRegisterResponse);
     }
   }
+  logout = async (logout) => {
+    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/users/logout', {
+      method: 'POST',
+      credentials: 'include',
+      body: JSON.stringify(logout),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const parsedLogoutResponse = await response.json()
 
+    if(parsedLogoutResponse.status.code === 200) {
+      this.setState({
+        loggedIn: false
+      })
+    } else {
+      console.log("Logout Busted:");
+      console.log(parsedLogoutResponse);
+    }
+  }
   render() {
     return (
       <div className="App">
@@ -66,9 +86,10 @@ class App extends React.Component {
           this.state.loggedIn
           ?
           <React.Fragment>
-            <Icon />
-            <NavMenu />
-            <SkillContainer />
+            <SkillContainer
+              logout={this.logout}
+              username={this.state.loggedInUserName}
+              />
           </React.Fragment>
           :
           <Registration login={this.login} register={this.register} />
