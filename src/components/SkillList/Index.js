@@ -9,7 +9,7 @@
            <Card.Content>
              <Card.Header>{skill.goal}</Card.Header>
              <Card.Description>{skill.objective}</Card.Description>
-             <Card.Description>Cumulative Time: {skill.time} Hours</Card.Description>
+             <Card.Description>Cumulavitive Time: {skill.time} Hours</Card.Description>
            </Card.Content>
            <Card.Content extra>
              <Button onClick={() => props.deleteSkill(skill.id)}>Delete Skill</Button>

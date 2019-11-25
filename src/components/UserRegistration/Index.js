@@ -53,7 +53,7 @@ class Registraion extends React.Component {
 
   render() {
     return(
-      <div className="Registraion">
+      <div className="Registration">
         <Form onSubmit={this.handleSubmit}>
           {
             this.state.action === "register"
