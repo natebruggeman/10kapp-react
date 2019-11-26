@@ -47,9 +47,10 @@ class CreateSkill extends Component {
                 name="time"
                 value={this.state.time}
                 onChange={this.handleChange}
+      
               />
               <Modal.Actions>
-                <Button color='green' type="submit">Create Skill</Button>
+                <Button color='green' type="submit" ref='clear'>Create Skill</Button>
               </Modal.Actions>
             </Form>
           </Modal.Content>
