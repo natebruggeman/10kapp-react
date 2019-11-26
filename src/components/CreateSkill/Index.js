@@ -23,30 +23,30 @@ class CreateSkill extends Component {
         name='plus'
         onClick={this.props.openModal}
         />
-        <Modal open={this.props.open} closeIcon onClose={this.props.close}>
+        <Modal open={this.props.open} closeIcon onClose={this.props.closeModal}>
           <Header>Create Skill</Header>
           <Modal.Content>
-            <Form onSubmit={(e) => this.state.addSkill(e, this.state.goal)}>
+            <Form onSubmit={(e) => this.props.addSkill(e, this.state)}>
               <Label> Goal: </Label>
               <Form.Input
                 type="text"
                 name="goal"
                 value={this.state.goal}
-                onChange={this.state.handleCreateChange}
+                onChange={this.handleChange}
               />
               <Label> Objective: </Label>
               <Form.Input
                 type="text"
                 name="objective"
                 value={this.state.objective}
-                onChange={this.props.handleCreateChange}
+                onChange={this.handleChange}
               />
               <Label> Time: </Label>
               <Form.Input
                 type="number"
                 name="time"
-                value={this.props.time}
-                onChange={this.props.handleCreateChange}
+                value={this.state.time}
+                onChange={this.handleChange}
               />
               <Modal.Actions>
                 <Button color='green' type="submit">Create Skill</Button>

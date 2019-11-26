@@ -91,10 +91,10 @@ class SkillContainer extends Component {
   }
   handleCreateChange = (event) => {
     this.setState({
-      skills: {
+      skills: [
         ...this.state.skills,
         [event.target.name]: event.target.value
-      }
+      ]
     })
   }
   updateSkill = async (e) => {
