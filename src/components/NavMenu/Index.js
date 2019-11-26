@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+
 
 class NavMenu extends Component {
   state = {}
 
-  handleItemClick = (e, { name }) =>
-  this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state
+  
 
     return (
       // <Menu key={this.props.username}>
@@ -25,7 +23,7 @@ class NavMenu extends Component {
       //     onClick={this.handleItemClick}
       //   />
       // </Menu>
-      <div> Bawk </div>
+      <div> Nav </div>
     )
   }
 }

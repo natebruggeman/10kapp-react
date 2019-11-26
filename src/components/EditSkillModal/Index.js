@@ -4,7 +4,7 @@ import { Form, Button, Label, Header, Modal} from 'semantic-ui-react';
 function EditSkillModal(props) {
 
     return(
-      <Modal open={props.open} closeIcon onClose={props.closeEditModal}>
+      <Modal open={props.open} closeIcon onClose={props.closeModal}>
         <Header>Edit Skill</Header>
         <Modal.Content>
           <Form onSubmit={props.updateSkill}>

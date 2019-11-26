@@ -8,7 +8,7 @@ class App extends React.Component {
     super();
 
     this.state = {
-      loggedIn: false,
+      loggedIn: true,
       loggedInUserEmail: null,
       loggedInUserName: null
     }
@@ -81,21 +81,21 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="App">
+        <div className="App">
         {
           this.state.loggedIn
           ?
           <React.Fragment>
-            <SkillContainer
-              logout={this.logout}
-              username={this.state.loggedInUserName}
-              />
+          <SkillContainer
+          logout={this.logout}
+          username={this.state.loggedInUserName}
+          />
           </React.Fragment>
           :
           <Registration login={this.login} register={this.register} />
         }
-      </div>
-    );
+        </div>
+    )
   }
 }
 

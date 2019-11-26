@@ -1,7 +1,10 @@
-import React from 'react'
-import { Image } from 'semantic-ui-react'
+import React from 'react';
+import { Image } from 'semantic-ui-react';
 
-const Icon = () => (
-  <Image src="./Media/Cap.jpg" />
-)
+function Icon() {
+
+  return(
+  <Image src={require("../../Media/Cap.jpg")} />
+  )
+}
 export default Icon

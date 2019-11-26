@@ -45,7 +45,7 @@ class SkillContainer extends Component {
   }
   addSkill = async (e, skillFromTheForm) => {
 
-    console.log(skillFromTheForm)
+    console.log(skillFromTheForm, 'this is skill from the form')
 
      try {
 
@@ -65,6 +65,7 @@ class SkillContainer extends Component {
 
 
     } catch(err){
+      console.log(skillFromTheForm, 'this is skillfromform');
       console.log('error')
       console.log(err)
     }
@@ -128,7 +129,7 @@ class SkillContainer extends Component {
         skills: newSkillArrayWithUpdate
       })
 
-      this.closeModal()
+      this.closeEditModal()
 
     } catch(err) {
       console.error(err)
@@ -138,6 +139,12 @@ class SkillContainer extends Component {
   closeEditModal = () => {
     this.setState({
       editModalOpen: false
+    })
+  }
+
+  openCreateModal = () => {
+    this.setState({
+      createModalOpen: true
     })
   }
 
@@ -179,13 +186,18 @@ class SkillContainer extends Component {
               editSkill={this.editSkill}/>
             </Grid.Column>
             <Grid.Column>
-              <CreateSkill addSkill={this.addSkill}/>
+              <CreateSkill
+              open={this.state.createModalOpen}
+              addSkill={this.addSkill}
+              openModal={this.openCreateModal}
+              closeModal={this.closeCreateModal}
+              />
             </Grid.Column>
             <EditSkillModal
               open={this.state.editModalOpen}
               updateSkill={this.updateSkill}
               skillToEdit={this.state.skillToEdit}
-              closeModal={this.closeModal}
+              closeModal={this.closeEditModal}
               handleEditChange={this.handleEditChange}
             />
           </Grid.Row>
