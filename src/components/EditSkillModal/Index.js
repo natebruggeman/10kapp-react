@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../App.css';
 import { Form, Button, Label, Header, Modal} from 'semantic-ui-react';
 
 function EditSkillModal(props) {
@@ -30,7 +31,7 @@ function EditSkillModal(props) {
               onChange={props.handleEditChange}
             />
             <Modal.Actions>
-              <Button color='green' type="submit">Update Skill</Button>
+              <Button color='blue' type="submit">Update Skill</Button>
             </Modal.Actions>
           </Form>
         </Modal.Content>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../App.css';
 import { Icon,  Form, Button, Label, Header, Modal } from 'semantic-ui-react';
 
 class CreateSkill extends Component {
@@ -18,13 +19,14 @@ class CreateSkill extends Component {
   render(){
     return (
 
-      <React.Fragment>
+      <React.Fragment >
         <Icon
         name='plus'
         onClick={this.props.openModal}
+        width='100' height='100'
         />
         <Modal open={this.props.open} closeIcon onClose={this.props.closeModal}>
-          <Header>Create Skill</Header>
+          <Header>Create a Skill</Header>
           <Modal.Content>
             <Form onSubmit={(e) => this.props.addSkill(e, this.state)}>
               <Label> Goal: </Label>

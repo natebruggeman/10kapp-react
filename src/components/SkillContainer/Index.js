@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Icon from '../Icon/Index.js'
-import NavMenu from '../NavMenu/Index.js'
+// import NavMenu from '../NavMenu/Index.js'
 import SkillList from '../SkillList/Index.js';
 import CreateSkill from '../CreateSkill/Index.js';
 import EditSkillModal from '../EditSkillModal/Index.js';
 import { Grid, Button } from 'semantic-ui-react';
+import '../../App.css';
+import Timer from '../Timer/Index.js';
 
 class SkillContainer extends Component {
   constructor(props){
@@ -62,7 +64,7 @@ class SkillContainer extends Component {
       console.log(parsedResponse, ' this is response')
 
       this.setState({skills: [...this.state.skills, parsedResponse.data]})
-
+      this.closeCreateModal()
 
     } catch(err){
       console.log(skillFromTheForm, 'this is skillfromform');
@@ -80,6 +82,8 @@ class SkillContainer extends Component {
       }
     })
   }
+
+
 
   handleEditChange = (event) => {
     this.setState({
@@ -170,12 +174,27 @@ class SkillContainer extends Component {
   render(){
     return (
       <React.Fragment>
-        <Icon />
-        <NavMenu logout={this.props.logout}/>
 
-        <div>
-          <Button onClick={() =>  this.props.logout(this.props.username)}>Logout</Button>
-        </div>
+        <span className = "navbar">
+            <Icon />
+            <Timer />
+            <br/>
+            <br/>
+            <Button onClick={() =>  this.props.logout(this.props.username)}>Logout</Button>
+            <br/>
+            <br/>
+          <Grid.Column>
+            <CreateSkill
+              open={this.state.createModalOpen}
+              addSkill={this.addSkill}
+              openModal={this.openCreateModal}
+              closeModal={this.closeCreateModal}
+            />
+          </Grid.Column>
+        </span>
+        <br/>
+        <br/>
+
         <Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
           <Grid.Row>
             <Grid.Column>
@@ -185,14 +204,7 @@ class SkillContainer extends Component {
               deleteSkill={this.deleteSkill}
               editSkill={this.editSkill}/>
             </Grid.Column>
-            <Grid.Column>
-              <CreateSkill
-              open={this.state.createModalOpen}
-              addSkill={this.addSkill}
-              openModal={this.openCreateModal}
-              closeModal={this.closeCreateModal}
-              />
-            </Grid.Column>
+
             <EditSkillModal
               open={this.state.editModalOpen}
               updateSkill={this.updateSkill}

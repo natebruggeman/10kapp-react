@@ -81,12 +81,15 @@ class App extends React.Component {
   }
   render() {
     return (
-        <div className="App">
+        <div className="App"
+        //  style={{
+        // backgroundColor: 'blue'}}
+        >
         {
           this.state.loggedIn
           ?
           <React.Fragment>
-          <SkillContainer
+          <SkillContainer 
           logout={this.logout}
           username={this.state.loggedInUserName}
           />
